@@ -1,29 +1,5 @@
 use crate::hacker_rank::*;
 
-/**
-
-// Complete the repeatedString function below.
-    static long repeatedString(String s, long n) {
-        String strToCheck = s;
-        double countTimes = 1;
-        if(n < s.length()) {
-            strToCheck = strToCheck.substring(0, (int)(n));
-        } else if (n > s.length()){
-            // not cast to double so it will be rounded
-            countTimes = (n / strToCheck.length());
-        }
-
-        long count = strLength(strToCheck);
-        count = Math.round(countTimes * count);
-        // check the remainder of it
-        int remainder = (int)n % s.length();
-        strToCheck = s.substring(0,remainder);
-        return count + strLength(strToCheck);
-    }
-
-**/
-
-
 // Solution for https://www.hackerrank.com/challenges/repeated-string/problem
 fn repeated_string_call(s: &String, n: usize) -> usize {
   let mut str_to_check = s.as_str();
@@ -43,13 +19,12 @@ fn repeated_string_call(s: &String, n: usize) -> usize {
 }
 
 fn str_length(str_to_check: &str) -> usize {
-    let mut count = 0;
-    for c in str_to_check.chars() {
-        if c == 'a' {
-            count = count+1;
-        }
-    }
-    return count;
+    return str_to_check.chars().fold(0, |acc, x: char| {
+        if x == 'a' {
+          return acc + 1
+        } 
+        acc
+    });
 }
 
 // Breaks up the arguments and runs the solution to the problem
