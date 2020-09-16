@@ -9,6 +9,7 @@ fn hacker_rank_action(c: &Context) {
     let first_arg = c.args.first();
     match first_arg.unwrap().as_str() {
         "cat_and_mouse" => cat_and_mouse::run(&c.args[1..c.args.len()]),
+        "repeated_string" => repeated_string::run(&c.args[1..c.args.len()]),
         _ => {
             println!("Problem not found {:?}", c.args.first().unwrap());
             problem_not_found();
@@ -19,6 +20,7 @@ fn hacker_rank_action(c: &Context) {
 fn problem_not_found() {
     println!("try one of the following:");
     println!("-> cat_and_mouse <cat a> <cat b> <cat c>");
+    println!("-> repeated_string <string> <len>");
 }
 
 pub fn get() -> Command {

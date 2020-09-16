@@ -1,3 +1,4 @@
+use ansi_term::Style;
 
 // Solution for https://www.hackerrank.com/challenges/cats-and-a-mouse/problem
 fn cat_and_mouse_call(cat_a: i32, cat_b: i32, mouse_c: i32) -> String {
@@ -21,5 +22,5 @@ pub fn run(args: &[String]) {
   let cat_a = args[0].parse::<i32>().unwrap();
   let cat_b = args[1].parse::<i32>().unwrap();
   let mouse_c = args[2].parse::<i32>().unwrap();
-  println!("Cat and Mouse result is {:?}", cat_and_mouse_call(cat_a, cat_b, mouse_c));
+  println!("Cat and Mouse result is {}", Style::new().underline().paint(cat_and_mouse_call(cat_a, cat_b, mouse_c)));
 }
