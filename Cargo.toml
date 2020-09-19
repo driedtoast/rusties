@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 seahorse = "1.0.0"
 ansi_term = "0.12.1"
+fountain = "0.1.12"
+nom = "5.1.2"

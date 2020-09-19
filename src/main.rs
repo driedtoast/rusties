@@ -12,6 +12,7 @@ fn main() {
         .usage("rusties [args]")
         .action(commands::default_action)
         .command(commands::add_command())
-        .command(hacker_rank::command::get());
+        .command(hacker_rank::command::get())
+        .command(commands::screenplay::get());
     app.run(args);
 }
