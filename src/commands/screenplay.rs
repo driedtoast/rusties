@@ -5,6 +5,7 @@ use nom::error::{ErrorKind, VerboseError};
 use std::fs::File;
 use std::io;
 use std::io::prelude::*;
+use std::collections::HashSet;
 
 fn screenplay_action(c: &Context) {
     if c.args.is_empty() {
@@ -55,10 +56,48 @@ pub fn run(arg: &String) {
 
 }
 
+// pub struct Dialog {
+//     pub scene: Option<String>,
+//     pub character: Option<String>,
+//     pub text: Option<String>,
+// }
+
+// pub text: Vec<(String, String)>,
+
 pub fn process_lines(document: &Document) {
+    let mut characters = HashSet::new();
+    let mut scenes = HashSet::new();
+    // let mut dialogs = Vec<Dialog>::new();
+
     println!("line count is {}", document.lines.len());
     for line in &document.lines {
-        println!("line is {}", line.is_scene());
+        println!("line is {}", line.is_speaker());
+        match line {
+            Line::Scene(s) => { scenes.insert(s.to_string()); },
+            // Line::Action(s) => format!("<p class='action'>{}</p>", s),
+            // Line::Dialogue(s) => { 
+            //     dialogs.push(Dialog {
+            //         text: s,
+            //         character: characters.last(),
+
+            //     })            
+            // },
+            Line::Speaker { name, is_dual: _ } => { characters.insert(name.to_string()); }
+            _ => {}
+            // Line::Parenthetical(s) => format!("<p class='parenthetical'>({})</p>", s),
+            // Line::Transition(s) => format!("<p class='transition'>({})</p>", s),
+            // Line::Lyric(s) => format!("<p class='lyric'>({})</p>", s),
+        }
+    }
+
+    println!("Characters: ");
+    for character in &characters {
+        println!(" - {}", character);
+    }
+
+    println!("Scenes: ");
+    for scene in &scenes {
+        println!(" - {}", scene);
     }
 }
 
