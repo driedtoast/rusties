@@ -2,6 +2,7 @@ use seahorse::{App};
 use std::env;
 
 mod hacker_rank;
+mod leetcode;
 mod commands;
 
 fn main() {
@@ -13,6 +14,7 @@ fn main() {
         .action(commands::default_action)
         .command(commands::add_command())
         .command(hacker_rank::command::get())
+        .command(leetcode::command::get())
         .command(commands::screenplay::get());
     app.run(args);
 }

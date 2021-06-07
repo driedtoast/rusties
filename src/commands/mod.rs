@@ -3,7 +3,7 @@ use seahorse::{Context, Command};
 pub mod screenplay;
 
 pub fn default_action(c: &Context) {
-    println!("Hello, {:?}", c.args);
+    println!("Not found: {:?}", c.args);
 }
 
 // Just for testing 
